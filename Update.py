@@ -55,7 +55,7 @@ if __name__=='__main__':
         polt_figure(df)
         sys.exit(0) 
 
-    with open('../pickles/access_enron_half.pkl','rb') as f:
+    with open('./Datasets/access_enron_half.pkl','rb') as f:
         pkl_doc=pickle.load(f)
     doc_size = pd.Series(pkl_doc['doc_size'])
     min_file_size, max_file_size, avg_file_size = doc_size.min(),doc_size.max(),doc_size.mean() 
