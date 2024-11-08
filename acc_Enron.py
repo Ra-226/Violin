@@ -138,7 +138,7 @@ if __name__=='__main__':
         sys.exit(0) 
     
 
-    with open('./Datasets/enron_vol_access_2.pkl','rb') as f:
+    with open('Datasets/enron_vol_access.pkl', 'rb') as f:
         pkl=pickle.load(f)
 
     queryRate = 0.5

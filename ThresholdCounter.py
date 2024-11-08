@@ -160,7 +160,7 @@ class Threshold:
         
 if __name__=='__main__':
     T = [200,400,600,800,1000,1200,1400]
-    with open('./Datasets/enron_vol_access_2.pkl','rb') as f:
+    with open('Datasets/enron_vol_access.pkl', 'rb') as f:
         pkl=pickle.load(f)
 
     queryRate = 0.5
