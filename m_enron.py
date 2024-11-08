@@ -84,7 +84,7 @@ def polt_figure_size(df,str):
     plt.show()
 
 if __name__=='__main__':
-    file = "./pkl/m_enron_4.pkl"
+    file = "./pkl/m_enron.pkl"
     x = [0.25,0.5,0.75,1]
     if os.path.exists(file):
         with open(file,'rb') as f:
@@ -95,7 +95,7 @@ if __name__=='__main__':
         polt_figure_size(df.loc[2:6],"len")
         sys.exit(0) 
 
-    with open('./Datasets/enron_vol_access_2.pkl','rb') as f:
+    with open('Datasets/enron_vol_access.pkl', 'rb') as f:
         pkl=pickle.load(f)
 
     df = pd.DataFrame(0.0,range(2*len(x)),['count',"x","attack","acc","len","size","time"])
