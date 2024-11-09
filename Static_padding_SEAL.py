@@ -59,12 +59,10 @@ def polt_figure_size(df,str):
     
     color_def = sns.color_palette('Set1')
     if str == "len":
-        df['attack'].replace("Violin","Violin",inplace = True)
         sns.barplot(data=df,x="attack", y=str,hue='attack',hue_order=["BVMA","BVA","Violin"],
                     legend=True,palette=[color_def[0],color_def[3],color_def[4]])
         plt.legend(loc='upper right',fontsize = 16)
     else:
-        df['attack'].replace("Violin","Violin",inplace = True)
         sns.barplot(data=df,x="attack", y=str,hue='attack',hue_order=["BVMA","BVA","Violin"],
                     legend=False,palette=[color_def[0],color_def[3],color_def[4]])
     plt.yscale('log')
@@ -94,7 +92,7 @@ if __name__=='__main__':
 
     with open('Datasets/enron_vol_access.pkl', 'rb') as f:
         pkl=pickle.load(f)
-    with open('./Datasets/access_enron.pkl','rb') as f:
+    with open('Datasets/doc_size_enron.pkl', 'rb') as f:
         pkl_doc=pickle.load(f)
     doc_size = pd.Series(pkl_doc['doc_size'])
     min_file_size, max_file_size, avg_file_size = doc_size.min(),doc_size.max(),doc_size.mean() 
@@ -132,7 +130,7 @@ if __name__=='__main__':
             wordAccess=pkl[1].loc[wordSet]
             seal_x = v_x
 
-            Violin_acc, Violin_result, Violin_total_inject_size, Violin_total_inject_length,Violin_time = Violin.Violin_main(wordSet, query, wordAccess, total_size, word_size_set,real_length, seal_x, min_file_size, max_file_size)
+            Violin_acc, Violin_result, Violin_total_inject_size, Violin_total_inject_length,Violin_time = Violin.Violin_set_main(wordSet, query, wordAccess, total_size, word_size_set,real_length, seal_x, min_file_size, max_file_size)
             df.loc[flag] = [times, v_x, "Violin", Violin_acc,Violin_total_inject_length,Violin_total_inject_size,Violin_time]
             flag += 1
             

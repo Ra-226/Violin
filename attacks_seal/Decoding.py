@@ -11,7 +11,7 @@ import time
 from numba import njit
 
 
-@njit(nopython=True) 
+# @njit(nopython=True)
 def find_offset(dif, kws_len):
     offset = kws_len + 1
     while(True):

@@ -116,7 +116,6 @@ def Violin_set_recover(wordSet, query, wordAccess, queryAccess, total_size, word
     with Pool(processes = NUM_CORES) as pool:
         for sub_K in pool.map(partial_function, sub_query):
             K.update(sub_K)
-    print(time.time()-s)
     
     begin =time.time()
     result = {}

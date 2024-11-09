@@ -218,15 +218,13 @@ def Violin_set_recover(wordSet, word_set, query, group, min_file_size, max_file_
                                                     length_after_setup_padding, group, 
                                                 min_inj_size, max_inj_size, word_size_set,
                                                 injection_length, injection_size, injection_size_set)
-    
-    s = time.time()
+
     K = {}
     partial_function = partial(searchPattern, wordSet, word_size_set, size_set_after_injection_padding)
     sub_query = Splits(query, NUM_CORES)
     with Pool(processes = NUM_CORES) as pool:
         for sub_K in pool.map(partial_function, sub_query):
             K.update(sub_K)
-    print(time.time()-s)
 
     begin =time.time()
     result = {}

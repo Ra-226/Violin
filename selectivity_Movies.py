@@ -31,6 +31,14 @@ def polt_figure(x,y1,y2,y3,y4,y5):
     plt.figure()
     ax=plt.subplot()
     color_def = sns.color_palette('Set1')
+    y1_avg = np.mean(y1, axis=1)
+    y1_min = y1_avg - np.min(y1, axis=1)
+    y1_max = np.max(y1, axis=1) - y1_avg
+
+    y2_avg = np.mean(y2, axis=1)
+    y2_min = y2_avg - np.min(y2, axis=1)
+    y2_max = np.max(y2, axis=1) - y2_avg
+
     y3_avg = np.mean(y3, axis=1)
     y3_min = y3_avg - np.min(y3, axis=1)
     y3_max = np.max(y3, axis=1) - y3_avg
@@ -52,13 +60,13 @@ def polt_figure(x,y1,y2,y3,y4,y5):
     ax.errorbar(x, y5_avg, color = color_def[2], marker = '^', yerr=[y5_min,y5_max],
                  markersize = 12, markeredgewidth=.8, 
                 linewidth=1.5, capsize=4, label = 'BVA-h')
-    ax.errorbar(x, y2, color = color_def[1], marker = 's', 
-              markersize = 12, markeredgewidth=.8,
-             linewidth=1.5, capsize=4, label = 'Decoding')
-    
-    ax.errorbar(x, y1, color = color_def[4], marker = 'd', 
-                 markersize = 12, markeredgewidth=.8, 
-                linewidth=1.5, capsize=4,  label = 'Violin')
+    ax.errorbar(x, y2_avg, color=color_def[1], marker='s', yerr=[y2_min, y2_max],
+                markersize=12, markeredgewidth=.8,
+                linewidth=1.5, capsize=4, label='Decoding')
+
+    ax.errorbar(x, y1_avg, color=color_def[4], marker='d', yerr=[y1_min, y1_max],
+                markersize=12, markeredgewidth=.8,
+                linewidth=1.5, capsize=4, label='Violin')
     
     ax.set_xticks([0,0.1,0.25,0.50,0.75,1.00], ['U',0.1,0.25,0.50,0.75,1.00])
     plt.grid()
@@ -125,6 +133,8 @@ if __name__=='__main__':
         if v_x == 0:
             wordSet=[list(pkl[0].keys())[i] for i in np.random.permutation(3000)[:word_len]]
 
+        Violin_acc = []
+        Decoding_acc = []
         BVMA_acc = []
         low_BVA_acc = []
         high_BVA_acc = []
@@ -137,14 +147,16 @@ if __name__=='__main__':
             word_size_set = {i:pkl[0][i] for i in wordSet}
             wordAccess=pkl[1].loc[wordSet]
 
-            Violin_acc, Violin_result, Violin_total_inject_size, Violin_total_inject_length,Violin_time = Violin.Violin_main(wordSet, query, wordAccess, total_size, word_size_set)
-            Decoding_acc, Decoding_total_inject_size, Decoding_total_inject_length, offset, Decoding_time = Decoding.Decoding_main(wordSet, query, wordAccess, total_size)
+            Violin_acc_temp, Violin_result, Violin_total_inject_size, Violin_total_inject_length,Violin_time = Violin.Violin_main(wordSet, query, wordAccess, total_size, word_size_set)
+            Decoding_acc_temp, Decoding_total_inject_size, Decoding_total_inject_length, offset, Decoding_time = Decoding.Decoding_main(wordSet, query, wordAccess, total_size)
             BVMA_acc_temp, BVMA_total_inject_size, BVMA_total_inject_length,BVMA_time = BVMA.BVMA_NoSP_main(wordSet, query, wordAccess, total_size)
             gamma = len(wordSet)//2
             low_BVA_acc_temp, low_BVA_total_inject_size, low_BVA_total_inject_length,low_BVA_time = BVA.BVA_main(wordSet, query, wordAccess, total_size, gamma)
             gamma = offset // 4
             high_BVA_acc_temp, high_BVA_total_inject_size, high_BVA_total_inject_length,high_BVA_time = BVA.BVA_main(wordSet, query, wordAccess, total_size, gamma)
-            
+
+            Violin_acc.append(Violin_acc_temp)
+            Decoding_acc.append(Decoding_acc_temp)
             BVMA_acc.append(BVMA_acc_temp)
             low_BVA_acc.append(low_BVA_acc_temp)
             high_BVA_acc.append(high_BVA_acc_temp)

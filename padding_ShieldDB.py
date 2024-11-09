@@ -89,7 +89,7 @@ if __name__=='__main__':
 
     with open('Datasets/enron_vol_access.pkl', 'rb') as f:
         pkl=pickle.load(f)
-    with open('./Datasets/access_enron.pkl','rb') as f:
+    with open('Datasets/doc_size_enron.pkl', 'rb') as f:
         pkl_doc=pickle.load(f)
     doc_size = pd.Series(pkl_doc['doc_size'])
     min_file_size, max_file_size, avg_file_size = doc_size.min(),doc_size.max(),doc_size.mean() 
@@ -128,13 +128,11 @@ if __name__=='__main__':
                 wordSet, list(pkl[0].keys()), query, total_size, real_length, min_file_size, max_file_size, word_size_set, group)
             
             df.loc[flag] = [times, v_x, "Violin", Violin_acc,Violin_total_inject_length,Violin_total_inject_size,Violin_time,setup_Overhead, inj_Overhead]
-            print(df.loc[flag])
             flag += 1
 
             BVMA_acc, BVMA_total_inject_size, BVMA_total_inject_length,BVMA_time, setup_Overhead, inj_Overhead = BVMA.BVMA_NoSP_main(
                 wordSet, list(pkl[0].keys()), query, total_size, real_length, min_file_size, max_file_size, group)
             df.loc[flag] = [times, v_x, "BVMA", BVMA_acc,BVMA_total_inject_length,BVMA_total_inject_size,BVMA_time, setup_Overhead, inj_Overhead]
-            print(df.loc[flag])
             flag += 1
             
             gamma = (int) (avg_file_size*np.ceil(3000/(2*avg_file_size)))

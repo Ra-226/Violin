@@ -150,15 +150,12 @@ def Violin_set_recover(wordSet, query, update_dataset, client_dataset, min_file_
         update_size_set, update_size_pop_set)
     
 
-    s = time.time()
     K = {}
     partial_function = partial(searchPattern, wordSet, word_size_set, size_set_after_injection_update)
     sub_query = Splits(query, NUM_CORES)
     with Pool(processes = NUM_CORES) as pool:
         for sub_K in pool.map(partial_function, sub_query):
             K.update(sub_K)
-    print(time.time()-s)
-    #print(K)
     begin =time.time()
     result = {}
     for key in K.keys():

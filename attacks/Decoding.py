@@ -11,7 +11,7 @@ import time
 from numba import njit
 
 
-@njit(nopython=True) 
+# @njit(nopython=True)
 def find_offset(dif, kws_len):
     # 如果0已经在dif中，Decoding找不到offset，这不好，Decoding有缺陷
     offset = kws_len + 1
