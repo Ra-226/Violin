@@ -1,5 +1,4 @@
-# Violin: a Volumetric Injection Attack
-Against SSE
+# Violin: a Volumetric Injection Attack Against SSE
 
 ### Implementations of Violin
 

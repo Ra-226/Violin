@@ -131,15 +131,14 @@ if __name__ == '__main__':
 
             Violin_acc, Violin_result, Violin_total_inject_size, Violin_total_inject_length, Violin_time, setup_Overhead, inj_Overhead = Violin.Violin_set_main(
                 wordSet, list(pkl[0].keys()), query, total_size, real_length, min_file_size, max_file_size,
-                avg_file_size, word_size_set, group)
+                word_size_set, group)
 
             df.loc[flag] = [times, v_x, "Violin", Violin_acc, Violin_total_inject_length, Violin_total_inject_size,
                             Violin_time, setup_Overhead, inj_Overhead]
             flag += 1
 
             BVMA_acc, BVMA_total_inject_size, BVMA_total_inject_length, BVMA_time, setup_Overhead, inj_Overhead = BVMA.BVMA_NoSP_main(
-                wordSet, list(pkl[0].keys()), query, total_size, real_length, min_file_size, max_file_size,
-                avg_file_size, group)
+                wordSet, list(pkl[0].keys()), query, total_size, real_length, min_file_size, max_file_size, group)
             df.loc[flag] = [times, v_x, "BVMA", BVMA_acc, BVMA_total_inject_length, BVMA_total_inject_size, BVMA_time,
                             setup_Overhead, inj_Overhead]
             flag += 1
@@ -147,8 +146,7 @@ if __name__ == '__main__':
             gamma = (int)(avg_file_size * np.ceil(3000 / (2 * avg_file_size)))
 
             BVA_acc, BVA_total_inject_size, BVA_total_inject_length, BVA_time, setup_Overhead, inj_Overhead = BVA.BVA_main(
-                wordSet, list(pkl[0].keys()), query, total_size, real_length, gamma, min_file_size, max_file_size,
-                avg_file_size, group)
+                wordSet, list(pkl[0].keys()), query, total_size, real_length, gamma, min_file_size, max_file_size, group)
             df.loc[flag] = [times, v_x, "BVA", BVA_acc, BVA_total_inject_length, BVA_total_inject_size, BVA_time,
                             setup_Overhead, inj_Overhead]
             flag += 1
