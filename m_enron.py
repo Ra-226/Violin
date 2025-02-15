@@ -74,9 +74,9 @@ def polt_figure_size(df, str):
     plt.grid(zorder=0, axis='y')
     plt.xlabel('Attacks')
     if str == "size":
-        plt.ylabel('injected size')
+        plt.ylabel('Injected size')
     else:
-        plt.ylabel('injected length')
+        plt.ylabel('Injected length')
     plt.tick_params()
 
     ax.set_xticks([0, 1, 2, 3, 4], ["BVMA", "BVA-l", "BVA-h", "Violin", "Decoding"])

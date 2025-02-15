@@ -12,7 +12,7 @@ Violin: Powerful Volumetric Injection Attack Against Searchable Encryption with 
 
 Before running, you need to install the necessary packages
 
-```python
+```shell
 pip3 install -r requirements.txt
 ```
 

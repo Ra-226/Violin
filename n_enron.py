@@ -66,7 +66,7 @@ def polt_figure(x, y1, y2, y3, y4, y5):
     ax.yaxis.set_major_locator(y_major_locator)
     ax.set_xticks([500, 1000, 1500, 2000, 2500], [500, 1000, 1500, 2000, 2500])
     plt.grid()
-    plt.xlabel('keyword sapce')
+    plt.xlabel('Keyword sapce')
     plt.ylabel('Recovery rate')
     plt.tick_params()
     plt.legend(fontsize=16)
@@ -93,7 +93,7 @@ def plot_size_and_time(x, y, str):
 
     ax.set_xticks([500, 1000, 1500, 2000, 2500], [500, 1000, 1500, 2000, 2500])
     plt.yscale('log')
-    plt.xlabel('keyword sapce')
+    plt.xlabel('Keyword sapce')
     if str == 'size':
         plt.ylabel('Injection size')
     else:

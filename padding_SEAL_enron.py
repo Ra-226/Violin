@@ -67,9 +67,9 @@ def polt_figure_size(df, str):
     plt.grid(zorder=0, axis='y')
     plt.xlabel('Attacks')
     if str == "size":
-        plt.ylabel('injected size')
+        plt.ylabel('Injected size')
     else:
-        plt.ylabel('injected length')
+        plt.ylabel('Injected length')
     plt.tick_params()
     plt.savefig("./pic/" + 'Static_padding_SEAL_{}.pdf'.format(str), bbox_inches='tight', dpi=600)  # .pdf
 
