@@ -48,15 +48,21 @@ We have processed these datasets (tokenization, filtering, etc.), and the proces
 - `*_vol_access.pkl`: a dictionary that shows the relationship between keywords and the sizes of the files containing them.
 
 ### Citations
-> @ARTICLE{10891733,
->  author={Zhang, Lei and Wang, Jianfeng and Wu, Jiaojiao and Wang, Yunling and Sun, Shi-Feng},
->  journal={IEEE Transactions on Dependable and Secure Computing}, 
->  title={Violin: Powerful Volumetric Injection Attack Against Searchable Encryption With Optimal Injection Size}, 
->  year={2025},
->  volume={},
->  number={},
->  pages={1-14},
->  doi={10.1109/TDSC.2025.3543248}}
+
+```
+@ARTICLE{Z3WS, 
+      author={Zhang, Lei and Wang, Jianfeng and Wu, Jiaojiao and Wang, Yunling and Sun, Shi-Feng}, 
+      journal={IEEE Transactions on Dependable and Secure Computing}, 
+      title={Violin: Powerful Volumetric Injection Attack Against Searchable Encryption With Optimal Injection Size}, 
+      year={2025}, 
+      volume={}, 
+      number={}, 
+      pages={1-14}, 
+      doi={10.1109/TDSC.2025.3543248},
+}
+```
+
+
 
 
 
