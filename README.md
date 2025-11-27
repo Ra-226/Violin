@@ -50,15 +50,22 @@ We have processed these datasets (tokenization, filtering, etc.), and the proces
 ### Citations
 
 ```
-@ARTICLE{Z3WS, 
-      author={Zhang, Lei and Wang, Jianfeng and Wu, Jiaojiao and Wang, Yunling and Sun, Shi-Feng}, 
-      journal={IEEE Transactions on Dependable and Secure Computing}, 
-      title={Violin: Powerful Volumetric Injection Attack Against Searchable Encryption With Optimal Injection Size}, 
-      year={2025}, 
-      volume={}, 
-      number={}, 
-      pages={1-14}, 
-      doi={10.1109/TDSC.2025.3543248},
+@article{ZhangWWWS25,
+  author       = {Lei Zhang and
+                  Jianfeng Wang and
+                  Jiaojiao Wu and
+                  Yunling Wang and
+                  Shifeng Sun},
+  title        = {Violin: Powerful Volumetric Injection Attack Against Searchable Encryption
+                  With Optimal Injection Size},
+  journal      = {{IEEE} Trans. Dependable Secur. Comput.},
+  volume       = {22},
+  number       = {4},
+  pages        = {4103--4115},
+  year         = {2025},
+  url          = {https://doi.org/10.1109/TDSC.2025.3543248},
+  doi          = {10.1109/TDSC.2025.3543248},
+  timestamp    = {Sat, 09 Aug 2025 01:00:00 +0200},
 }
 ```
 
