@@ -1,55 +1,101 @@
-# Violin: a Volumetric Injection Attack Against SSE
+# Violin: Volumetric Injection Attacks Against Searchable Encryption
 
-### Implementations of Violin
+`Violin` is the reference research code for reproducing the experiments in the paper _Violin: Powerful Volumetric Injection Attack Against Searchable Encryption With Optimal Injection Size_. The repository evaluates the proposed `Violin` attack and compares it against baselines such as `Decoding`, `BVA`, and `BVMA` under multiple datasets and defense settings.
 
-This repository contains Python implementation of the attacks presented in:
+This project is useful for researchers working on:
 
-Violin: Powerful Volumetric Injection Attack Against Searchable Encryption with Optimal Injection Size  
+- searchable symmetric encryption (SSE)
+- leakage-abuse and injection attacks
+- volumetric leakage analysis
+- defense evaluation for `SEAL`, `ShieldDB`, and update scenarios
 
+## Highlights
 
+- Reproduces the main experimental settings from the paper
+- Includes attack implementations for standard, update-aware, `SEAL`, and `ShieldDB` settings
+- Covers multiple evaluation dimensions: recovery rate, injected volume, injected file count, and runtime
+- Ships with processed dataset artifacts in `Datasets/` for easier experimentation
 
-### Install Required Packages
+## Repository Layout
 
-Before running, you need to install the necessary packages
+- `attacks/`: core attack implementations for the standard setting
+- `attacks_Update/`: attack implementations for active client update scenarios
+- `attacks_seal/`: attack implementations for static padding / `SEAL`
+- `attacks_ShieldDB/`: attack implementations for dynamic padding / `ShieldDB`
+- `selectivity_*.py`: evaluates the impact of query selectivity on recovery rate
+- `m_enron.py`: evaluates the impact of the number of queries on recovery rate and injection overhead
+- `n_*.py`: evaluates the impact of the keyword set size on recovery rate, injection volume, and runtime
+- `padding_SEAL_enron.py`: evaluates static padding with `SEAL`
+- `padding_ShieldDB_*.py`: evaluates dynamic padding with `ShieldDB`
+- `ThresholdCounter.py`: evaluates injection volume under threshold-based countermeasures
+- `Update.py`: evaluates recovery rate when the client actively updates the dataset
+- `injectionPadding.py`: evaluates different injection padding parameters
+- `Datasets/`: processed pickle files used by the experiments
 
-```shell
-pip3 install -r requirements.txt
+## Installation
+
+Use Python 3.9+ and install dependencies with:
+
+```bash
+pip install -r requirements.txt
 ```
 
+The scripts write cached results to `pkl/` and figures to `pic/`. Create both directories before running experiments:
 
+```bash
+mkdir -p pkl pic
+```
 
-### Summary of files
+On Windows PowerShell:
 
-`selectivity_*.py`: evaluates the impact of query selectivity on the attack.
+```powershell
+New-Item -ItemType Directory -Force pkl, pic
+```
 
-`m_enron.py`: evaluates the impact of the number of queries, including recovery rate, number of injection files, and injection volume.
+## Quick Start
 
-`n_*.py`: evaluates the impact of the number of keywords in the set on the attack, including recovery rate, injection volume, and attack time.
+Run any experiment script directly. Examples:
 
-`padding_*_*.py`: evaluates the impact of padding (static padding with SEAL and dynamic padding with ShieldDB) on the attack.
+```bash
+python selectivity_Enron.py
+python n_enron.py
+python padding_SEAL_enron.py
+python Update.py
+```
 
-`ThresholdCounter*.py`: evaluates the injection volume for attacks with threshold countermeasures.
+Most scripts follow the same workflow:
 
-`Update.py`: evaluates the recovery rate of attacks when the client actively updates.
+- load processed dataset files from `Datasets/`
+- run repeated attack simulations
+- save intermediate results to `pkl/`
+- export plots to `pic/`
 
-`injectionPadding.py`: evaluates the impact of different injection padding parameters on the recovery rate.
+## Datasets
 
-### Datasets
-
-The download links for the datasets are as follows:
+The paper uses the following public datasets:
 
 - Enron: https://www.cs.cmu.edu/~enron/
 - Lucene: http://mail-archives.apache.org/mod_mbox/lucene-java-user
 - Movies: http://www.cs.cmu.edu/~ark/personas/
 
-We have processed these datasets (tokenization, filtering, etc.), and the processed pickle files are located in the `Datasets` directory.
+This repository already includes processed dataset artifacts such as tokenized metadata and keyword-volume mappings in `Datasets/`.
 
-- `doc_size_*.pkl`: contains the size of each file in the dataset.
-- `*_vol_access.pkl`: a dictionary that shows the relationship between keywords and the sizes of the files containing them.
+Common processed files include:
 
-### Citations
+- `doc_size_*.pkl`: document size information for each dataset
+- `*_vol_access.pkl`: mappings from keywords to the sizes of matching documents
 
-```
+## Reproducibility Notes
+
+- The code is organized as experiment scripts rather than a packaged library
+- Several experiments generate publication-style figures using `matplotlib` and `seaborn`
+- Some plots use LaTeX text rendering; if figure generation fails on your machine, verify that your local plotting/LaTeX environment is available
+
+## Citation
+
+If you use this repository in academic work, please cite:
+
+```bibtex
 @article{ZhangWWWS25,
   author       = {Lei Zhang and
                   Jianfeng Wang and
@@ -65,14 +111,10 @@ We have processed these datasets (tokenization, filtering, etc.), and the proces
   year         = {2025},
   url          = {https://doi.org/10.1109/TDSC.2025.3543248},
   doi          = {10.1109/TDSC.2025.3543248},
-  timestamp    = {Sat, 09 Aug 2025 01:00:00 +0200},
+  timestamp    = {Sat, 09 Aug 2025 01:00:00 +0200}
 }
 ```
 
+## License
 
-
-
-
-
-
-
+See `LICENSE` for licensing information.
